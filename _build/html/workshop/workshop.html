@@ -1,0 +1,299 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Workshop &mdash; Clinical Genomics and NGS  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/bacchus.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="CNV Detection Methods" href="../intro/methods.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+  
+<img src="../_static/qr.png" alt="qr" style="position:fixed;left:1%;bottom:1%; z-index:999;width:18%;">
+
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Clinical Genomics and NGS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/concepts.html">CNV Detection from NGS Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/strategies.html">CNV Detection Strategies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/methods.html">CNV Detection Methods</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Workshop</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#tutorial-11682">Tutorial 11682</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tutorial-11683">Tutorial 11683</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Clinical Genomics and NGS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Workshop</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/workshop/workshop.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="workshop">
+<h1>Workshop<a class="headerlink" href="#workshop" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="tutorial-11682">
+<h2>Tutorial 11682<a class="headerlink" href="#tutorial-11682" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>https://gatk.broadinstitute.org/hc/en-us/articles/360035531092?id=11682</p>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gatk PreprocessIntervals <span class="se">\</span>
+    -L targets_C.interval_list <span class="se">\</span>
+    -R /gatk/ref/Homo_sapiens_assembly38.fasta <span class="se">\</span>
+    --bin-length <span class="m">0</span> <span class="se">\</span>
+    --interval-merging-rule OVERLAPPING_ONLY <span class="se">\</span>
+    -O sandbox/targets_C.preprocessed.interval_list
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gatk CollectFragmentCounts <span class="se">\</span>
+    -I tumor.bam <span class="se">\</span>
+    -L targets_C.preprocessed.interval_list <span class="se">\</span>
+    --interval-merging-rule OVERLAPPING_ONLY <span class="se">\</span>
+    -O sandbox/tumor.counts.hdf5
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gatk --java-options <span class="s2">&quot;-Xmx6500m&quot;</span> CreateReadCountPanelOfNormals <span class="se">\</span>
+    -I HG00133.alt_bwamem_GRCh38DH.20150826.GBR.exome.counts.hdf5 <span class="se">\</span>
+    -I HG00733.alt_bwamem_GRCh38DH.20150826.PUR.exome.counts.hdf5 <span class="se">\</span>
+    -I NA19654.alt_bwamem_GRCh38DH.20150826.MXL.exome.counts.hdf5 <span class="se">\</span>
+    --minimum-interval-median-percentile <span class="m">5</span>.0 <span class="se">\</span>
+    -O sandbox/cnvponC.pon.hdf5
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gatk --java-options <span class="s2">&quot;-Xmx12g&quot;</span> DenoiseReadCounts <span class="se">\</span>
+    -I hcc1143_T_clean.counts.hdf5 <span class="se">\</span>
+    --count-panel-of-normals cnvponC.pon.hdf5 <span class="se">\</span>
+    --standardized-copy-ratios sandbox/hcc1143_T_clean.standardizedCR.tsv <span class="se">\</span>
+    --denoised-copy-ratios sandbox/hcc1143_T_clean.denoisedCR.tsv
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gatk PlotDenoisedCopyRatios <span class="se">\</span>
+    --standardized-copy-ratios hcc1143_T_clean.standardizedCR.tsv <span class="se">\</span>
+    --denoised-copy-ratios hcc1143_T_clean.denoisedCR.tsv <span class="se">\</span>
+    --sequence-dictionary Homo_sapiens_assembly38.dict <span class="se">\</span>
+    --minimum-contig-length <span class="m">46709983</span> <span class="se">\</span>
+    --output sandbox/plots <span class="se">\</span>
+    --output-prefix hcc1143_T_clean
+</pre></div>
+</div>
+</div>
+<div class="section" id="tutorial-11683">
+<h2>Tutorial 11683<a class="headerlink" href="#tutorial-11683" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>https://gatk.broadinstitute.org/hc/en-us/articles/360035890011</p>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gatk --java-options <span class="s2">&quot;-Xmx3g&quot;</span> CollectAllelicCounts <span class="se">\</span>
+    -L chr17_theta_snps.interval_list <span class="se">\</span>
+    -I normal.bam <span class="se">\</span>
+    -R /gatk/ref/Homo_sapiens_assembly38.fasta <span class="se">\</span>
+    -O sandbox/hcc1143_N_clean.allelicCounts.tsv
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gatk --java-options <span class="s2">&quot;-Xmx3g&quot;</span> CollectAllelicCounts <span class="se">\</span>
+    -L chr17_theta_snps.interval_list <span class="se">\</span>
+    -I tumor.bam <span class="se">\</span>
+    -R /gatk/ref/Homo_sapiens_assembly38.fasta <span class="se">\</span>
+    -O sandbox/hcc1143_T_clean.allelicCounts.tsv
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gatk --java-options <span class="s2">&quot;-Xmx4g&quot;</span> ModelSegments <span class="se">\</span>
+    --denoised-copy-ratios hcc1143_T_clean.denoisedCR.tsv <span class="se">\</span>
+    --allelic-counts hcc1143_T_clean.allelicCounts.tsv <span class="se">\</span>
+    --normal-allelic-counts hcc1143_N_clean.allelicCounts.tsv <span class="se">\</span>
+    --output sandbox <span class="se">\</span>
+    --output-prefix hcc1143_T_clean
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gatk CallCopyRatioSegments <span class="se">\</span>
+    --input hcc1143_T_clean.cr.seg <span class="se">\</span>
+    --output sandbox/hcc1143_T_clean.called.seg
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gatk PlotModeledSegments <span class="se">\</span>
+    --denoised-copy-ratios hcc1143_T_clean.denoisedCR.tsv <span class="se">\</span>
+    --allelic-counts hcc1143_T_clean.hets.tsv <span class="se">\</span>
+    --segments hcc1143_T_clean.modelFinal.seg <span class="se">\</span>
+    --sequence-dictionary Homo_sapiens_assembly38.dict <span class="se">\</span>
+    --minimum-contig-length <span class="m">46709983</span> <span class="se">\</span>
+    --output sandbox/plots <span class="se">\</span>
+    --output-prefix hcc1143_T_clean
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../intro/methods.html" class="btn btn-neutral float-left" title="CNV Detection Methods" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+<a href="https://gen-era.com.tr"><img src="../_static/genera.png" alt="Gen-Era" style="height:48px;"></a>
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

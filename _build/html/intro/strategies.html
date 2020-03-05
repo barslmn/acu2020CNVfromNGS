@@ -1,0 +1,232 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CNV Detection Strategies &mdash; Clinical Genomics and NGS  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/bacchus.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="CNV Detection Methods" href="methods.html" />
+    <link rel="prev" title="CNV Detection from NGS Data" href="concepts.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+  
+<img src="../_static/qr.png" alt="qr" style="position:fixed;left:1%;bottom:1%; z-index:999;width:18%;">
+
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Clinical Genomics and NGS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">CNV Detection from NGS Data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">CNV Detection Strategies</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#paired-end-mapping-pem">Paired End Mapping (PEM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#read-depth-rd">Read Depth (RD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#split-read-sr">Split Read (SR)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#de-novo-assembly-of-a-genome-as">De Novo Assembly of a Genome (AS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#combinationary-approaches-cb">Combinationary Approaches (CB)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="methods.html">CNV Detection Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workshop/workshop.html">Workshop</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Clinical Genomics and NGS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>CNV Detection Strategies</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/intro/strategies.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cnv-detection-strategies">
+<h1>CNV Detection Strategies<a class="headerlink" href="#cnv-detection-strategies" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="paired-end-mapping-pem">
+<h2>Paired End Mapping (PEM)<a class="headerlink" href="#paired-end-mapping-pem" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="read-depth-rd">
+<h2>Read Depth (RD)<a class="headerlink" href="#read-depth-rd" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="split-read-sr">
+<h2>Split Read (SR)<a class="headerlink" href="#split-read-sr" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="de-novo-assembly-of-a-genome-as">
+<h2>De Novo Assembly of a Genome (AS)<a class="headerlink" href="#de-novo-assembly-of-a-genome-as" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="combinationary-approaches-cb">
+<h2>Combinationary Approaches (CB)<a class="headerlink" href="#combinationary-approaches-cb" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="methods.html" class="btn btn-neutral float-right" title="CNV Detection Methods" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="concepts.html" class="btn btn-neutral float-left" title="CNV Detection from NGS Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+<a href="https://gen-era.com.tr"><img src="../_static/genera.png" alt="Gen-Era" style="height:48px;"></a>
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
